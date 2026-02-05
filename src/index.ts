@@ -20,11 +20,10 @@ const getData = async () => {
           p.price,
         ),
     );
-    products.map((element) => element.displayDetails());
-    console.log(
-      "first",
-      products.map((element) => element),
-    );
+    products.map((element) => {
+      return element.displayDetails();
+    });
+    products.map((element) => console.log(element.displayDetails())); // To see the result
   } catch (error) {
     console.error(error);
   }
