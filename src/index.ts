@@ -1,6 +1,7 @@
 import { Product } from "./models/Product.js";
 import { getProduct } from "./services/apiService.js";
 import { calculateDiscount } from "./utils/discountCalculator.js";
+import { DataError, NetworkError } from "./utils/errorHandler.js";
 import { calculateTax } from "./utils/taxCalculator.js";
 
 const getData = async () => {
@@ -20,7 +21,6 @@ const getData = async () => {
         ),
     );
 
-    console.log("products", products);
     products.map((element) => {
       element.displayDetails();
       calculateDiscount(element.price, element.discountPercentage);
@@ -33,7 +33,16 @@ const getData = async () => {
       console.log(calculateTax(element.price, element.category));
     }); // To see the result
   } catch (error) {
-    console.error(error);
+    if (error instanceof NetworkError) {
+      console.error("Network Error", error.message);
+      throw new NetworkError("something went wrong");
+    } else if (error instanceof DataError) {
+      console.error("Data Error", error.message);
+      throw new DataError("something went wrong");
+    } else if (error instanceof Error) {
+      console.error("Error", error.message);
+      throw new Error("Error");
+    }
   }
 };
 

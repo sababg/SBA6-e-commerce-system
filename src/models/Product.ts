@@ -1,5 +1,3 @@
-import type { Data } from "./types.js";
-
 interface Dimension {
   width: number;
   height: number;
@@ -14,28 +12,28 @@ interface Reviews {
   reviewerEmail: string;
 }
 
-export class Product implements Data {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  tags: string[];
-  brand: string;
-  sku: string;
-  weight: number;
-  dimensions: Dimension;
-  warrantyInformation: string;
-  shippingInformation: string;
-  availabilityStatus: string;
-  reviews: Reviews[];
-  returnPolicy: string;
-  minimumOrderQuantity: number;
-  thumbnail: string;
-  images: string[];
+export class Product {
+  private id: number;
+  public title: string;
+  public description: string;
+  public category: string;
+  public price: number;
+  public discountPercentage: number;
+  public rating: number;
+  public stock: number;
+  public tags: string[];
+  public brand: string;
+  public sku: string;
+  public weight: number;
+  public dimensions: Dimension;
+  protected warrantyInformation: string;
+  public shippingInformation: string;
+  public availabilityStatus: string;
+  public reviews: Reviews[];
+  public returnPolicy: string;
+  public minimumOrderQuantity: number;
+  public thumbnail: string;
+  public images: string[];
 
   constructor(
     id: number,
