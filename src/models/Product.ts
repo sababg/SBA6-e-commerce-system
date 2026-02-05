@@ -1,3 +1,5 @@
+import type { Data } from "./types.js";
+
 interface Dimension {
   width: number;
   height: number;
@@ -12,7 +14,7 @@ interface Reviews {
   reviewerEmail: string;
 }
 
-class Product {
+export class Product implements Data {
   id: number;
   title: string;
   description: string;
@@ -44,19 +46,27 @@ class Product {
     discountPercentage: number,
     rating: number,
     stock: number,
-    tags: string[],
-    brand: string,
-    sku: string,
-    weight: number,
-    dimensions: Dimension,
-    warrantyInformation: string,
-    shippingInformation: string,
-    availabilityStatus: string,
-    reviews: Reviews[],
-    returnPolicy: string,
-    minimumOrderQuantity: number,
-    thumbnail: string,
-    images: string[],
+    tags: string[] = [],
+    brand: string = "",
+    sku: string = "",
+    weight: number = 0,
+    dimensions: Dimension = { width: 0, height: 0, depth: 0 },
+    warrantyInformation: string = "",
+    shippingInformation: string = "",
+    availabilityStatus: string = "",
+    reviews: Reviews[] = [
+      {
+        rating: 0,
+        comment: "",
+        date: new Date(),
+        reviewerName: "",
+        reviewerEmail: "",
+      },
+    ],
+    returnPolicy: string = "",
+    minimumOrderQuantity: number = 0,
+    thumbnail: string = "",
+    images: string[] = [""],
   ) {
     this.id = id;
     this.title = title;
@@ -86,6 +96,8 @@ class Product {
         Product: ${this.title}
         Category: ${this.category}
         Price: $${this.price.toFixed(2)}
+        Discount: ${this.discountPercentage}%
+        Price After Discount: $${this.getPriceWithDiscount().toFixed(2)}
         Rating: ${this.rating} 
         In Stock: ${this.stock}
         Description: ${this.description}
