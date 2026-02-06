@@ -6,14 +6,14 @@ external modification, protected for warrantyInformation to allow potential inhe
 shapes. I added a default value for some properties in the class constructor.
 
 2: In 
-    ```JavaScript      
+    ```typescript      
       products.map((element) => {
       element.displayDetails();
       calculateDiscount(element.price, element.discountPercentage);
       calculateTax(element.price, element.category);
     }); ``` 
     I could not see the result ( The console.log) of the discountPercentage in the output, so I added this part of the code :
-    ```JavaScript  
+    ```typescript  
       products.map((element) => {
       console.log(element.displayDetails());
       console.log(calculateDiscount(element.price, element.discountPercentage));
