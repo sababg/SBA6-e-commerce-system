@@ -1,4 +1,5 @@
 import { Product } from "./models/Product.js";
+import type { Data } from "./models/types.js";
 import { getProduct } from "./services/apiService.js";
 import { calculateDiscount } from "./utils/discountCalculator.js";
 import { DataError, NetworkError } from "./utils/errorHandler.js";
@@ -8,7 +9,7 @@ const getData = async () => {
   try {
     const data = await getProduct();
     const products = data.map(
-      (p: any) =>
+      (p: Data) =>
         new Product(
           p.id,
           p.title,
