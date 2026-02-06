@@ -1,5 +1,5 @@
 import type { Data } from "../models/types.js";
-import { NetworkError } from "../utils/errorHandler.js";
+import { handleError, NetworkError } from "../utils/errorHandler.js";
 
 export const getProduct = async (): Promise<Data[]> => {
   try {
@@ -7,13 +7,14 @@ export const getProduct = async (): Promise<Data[]> => {
       "https://dummyjson.com/products?limit=10&skip=0",
     );
     if (!response.ok) {
-      throw new NetworkError("Network response was not ok");
+      throw new NetworkError(response.status, "Network response was not ok");
     }
     const data = await response.json();
     return data.products;
   } catch (error) {
     console.error("Fetch error:", error);
-    throw new NetworkError("Fetch error:");
+    handleError(error);
+    throw new Error("Failed to fetch product data");
   }
 };
 
