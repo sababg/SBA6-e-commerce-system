@@ -5,13 +5,16 @@
 external modification, protected for warrantyInformation to allow potential inheritance, and public for commonly accessed properties. I created structured interfaces like Data, Dimension, and Reviews to define a clear structure for data
 shapes. I added a default value for some properties in the class constructor.
 
-2: In  ```JavaScript      products.map((element) => {
+2: In 
+    ```JavaScript      
+      products.map((element) => {
       element.displayDetails();
       calculateDiscount(element.price, element.discountPercentage);
       calculateTax(element.price, element.category);
     }); ``` 
     I could not see the result ( The console.log) of the discountPercentage in the output, so I added this part of the code :
-    ```JavaScript  products.map((element) => {
+    ```JavaScript  
+      products.map((element) => {
       console.log(element.displayDetails());
       console.log(calculateDiscount(element.price, element.discountPercentage));
       console.log(calculateTax(element.price, element.category));
