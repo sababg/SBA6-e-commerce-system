@@ -14,7 +14,7 @@ export const getProduct = async (): Promise<Data[]> => {
   } catch (error) {
     console.error("Fetch error:", error);
     handleError(error);
-    throw new Error("Failed to fetch product data");
+    throw error;
   }
 };
 
